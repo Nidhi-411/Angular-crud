@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 export class WelcomeComponent {
   constructor(private router: Router) {}
 
-  // navigateToPosts() {
-  //   this.router.navigate(['/posts']);
-  // }
+  navigateToPosts() {
+    this.router.navigate(['/posts']);
+  }
 }
 
