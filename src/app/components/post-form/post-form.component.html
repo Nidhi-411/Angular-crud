@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-body">
+      <h4>{{ postForm.get('id')?.value ? 'Edit Post' : 'Add New Post' }}</h4>
+      <form [formGroup]="postForm" (ngSubmit)="onSave()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            id="title"
+            type="text"
+            class="form-control"
+            formControlName="title"
+          />
+          <!-- Error message for title -->
+          <small class="text-danger" *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
+            Title is required (min 3 characters)
+          </small>
+        </div>
+  
+        <div class="mb-3">
+          <label for="body" class="form-label">Body</label>
+          <textarea
+            id="body"
+            class="form-control"
+            formControlName="body"
+          ></textarea>
+          <!-- Error message for body -->
+          <small class="text-danger" *ngIf="postForm.get('body')?.invalid && postForm.get('body')?.touched">
+            Body is required (min 10 characters)
+          </small>
+        </div>
+  
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="postForm.invalid"
+        >
+          {{ postForm.get('id')?.value ? 'Update' : 'Create' }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+  

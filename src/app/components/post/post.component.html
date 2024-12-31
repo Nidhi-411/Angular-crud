@@ -1,0 +1,34 @@
+<div class="container mt-4">
+    <h2>Posts</h2>
+    <button class="btn btn-primary mb-3" (click)="showForm = true">Add New Post</button>
+  
+    <!--Form , jo ki alg component me h , reactive form use kiya h  --> 
+   <app-post-form
+   *ngIf="showForm"
+   [post]="post"
+   (save)="handleSave($event)"
+   (cancel)="handleCancel()"
+ ></app-post-form>
+
+   <!-- Posts Table -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts" (click)="navigateToPost(post.id)" style="cursor: pointer;">
+            <td>{{ post.id }}</td>
+          <td>{{ post.title }}</td>
+          <td>
+            <button class="btn btn-warning" (click)="getPostById($event, post.id)">Edit</button>
+            <button class="btn btn-danger" (click)="deletePost($event, post.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
